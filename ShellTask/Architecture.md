@@ -35,8 +35,23 @@ void cmd_help(void)
 }
 
 
+
+
 command_t commands[] =
 {
     {"ping", cmd_ping},
     {"help", cmd_help}
 };
+
+
+
+
+handler
+    ↓
+is a pointer
+    ↓
+to a function
+    ↓
+that returns void
+    ↓
+and takes no arguments
