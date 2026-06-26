@@ -1,3 +1,11 @@
+/*
+This file contains all the commands performed by the shell.
+
+*/
+
+
+
+
 #include<stdio.h>
 #include <stdlib.h>   
 #include"command_engine.h"
@@ -20,7 +28,7 @@ printf("System Status:Ok");
 void command_exit(void){
     printf("Exiting shell...");
 
-    exit(0);// this function is standard library function stdlib used to exit the shell.
+    exit(0);// this function is standard library function (stdlib) used to exit the shell.
 }
 
 
