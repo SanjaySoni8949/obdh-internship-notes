@@ -1,3 +1,13 @@
+/*
+This files handle how the input can be send.
+for now input send bu the keyboard later can be changed for UART etc.
+
+
+*/
+
+
+
+
 #include<stdio.h>
 #include <string.h>
 
