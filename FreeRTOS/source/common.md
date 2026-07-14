@@ -1,24 +1,15 @@
-FreeRTOS Source Files Common to All Ports:
+# Common FreeRTOS Source Files
 
-tasks.c and list.c implement the core FreeRTOS kernel functionality and are always required.
+The `FreeRTOS/Source` directory contains the core source files of the FreeRTOS kernel.
 
-They are located directly in the FreeRTOS/Source directory.
+| File              | Description                                                                                    |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| `tasks.c`         | Implements task creation, scheduling, and task management. **Required in every project.**      |
+| `list.c`          | Implements linked lists used internally by the FreeRTOS kernel. **Required in every project.** |
+| `queue.c`         | Provides queues, semaphores, and mutexes. Used in most FreeRTOS applications.                  |
+| `timers.c`        | Provides software timer functionality. Include only if software timers are used.               |
+| `event_groups.c`  | Implements Event Groups for task synchronization. Include only if needed.                      |
+| `stream_buffer.c` | Provides Stream Buffers and Message Buffers for data communication.                            |
+| `croutine.c`      | Implements co-routines. Rarely used and not recommended for new projects.                      |
 
-
-queue.c:  queue.c provides both queue and semaphore services. queue.c is nearly always required.
-
-
-timers.c: timers.c provides software timer functionality. It only needs to be built if the application uses software timers.
-
-
-event_groups.c: event_groups.c provides event group functionality. It only needs to be built if the application uses event groups.
-
-
-stream_buffer.c: stream_buffer.c provides both stream buffer and message buffer functionality. It only needs to be built if the application uses stream or message buffers.
-
-
-croutine.c: croutine.c implements the FreeRTOS co-routine functionality. It only needs to be built if the application
-
-
-uses co-routines. Co-routines are intended for use on very small microcontrollers, are rarely used now.
-
+> **Note:** Only `tasks.c` and `list.c` are required in every FreeRTOS project. Other source files are included only if the application uses their features.
