@@ -1,4 +1,4 @@
-FreeRTOS Source Files Common to All Ports
+FreeRTOS Source Files Common to All Ports:
 
 tasks.c and list.c implement the core FreeRTOS kernel functionality and are always required.
 
