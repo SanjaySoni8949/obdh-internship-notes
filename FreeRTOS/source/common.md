@@ -1,7 +1,8 @@
 FreeRTOS Source Files Common to All Ports
-tasks.c and list.c implement the core FreeRTOS kernel functionality and are always required. They are located
-directly in the FreeRTOS/Source directory. The same directory also contains the
-following optional source files:
+
+tasks.c and list.c implement the core FreeRTOS kernel functionality and are always required.
+They are located directly in the FreeRTOS/Source directory.
+The same directory also contains the following optional source files:
 queue.c
 queue.c provides both queue and semaphore services, as described later in this book. queue.c is nearly always required.
 
