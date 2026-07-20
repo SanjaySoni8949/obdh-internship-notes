@@ -1,34 +1,31 @@
-/*
-This files handle how the input can be send.
-for now input send bu the keyboard later can be changed for UART etc.
+#include <stdio.h>
+#include <stdint.h>
 
+#include "command_engine.h"
 
-*/
+int main(void)
+{
+    /* Stores the Command ID entered by the user */
+    uint8_t cmd_id;
 
-
-
-
-#include<stdio.h>
-#include <string.h>
-
-#include"command_engine.h"
-
-int  main(void){
-
-char command[50];
-while(1){
-    printf("> ");
-    fgets(command,sizeof(command),stdin);
-    command[strcspn(command, "\n")] = '\0'; // to remove the newline.
-
-      if (command[0] == '\0')// check whether the string is empty or not if empty continue.
+    while (1)
     {
-        continue;
+        printf("> ");
+
+        /* Read the Command ID in hexadecimal format.
+           Example input: 01 */
+        if (scanf("%hhx", &cmd_id) != 1)
+        {
+            printf("Invalid Command ID!\n");
+
+            while (getchar() != '\n');
+
+            continue;
+        }
+
+        /* Send the Command ID to the command engine */
+        execute_command(cmd_id);
     }
-
-    execute_command(command);
-}
-
 
     return 0;
 }
