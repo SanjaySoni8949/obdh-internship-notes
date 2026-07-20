@@ -16,10 +16,14 @@ void command_ping(void){
 printf("PONG");
 }
 
-void command_help(void ){
-printf("help is on the way");
+void command_help(void)
+{
+    printf("Available Commands:\n");
+    printf("0x01 - Ping\n");
+    printf("0x02 - Help\n");
+    printf("0x03 - Status\n");
+    printf("0x04 - Exit\n");
 }
-
 
 void command_status(void){
 printf("System Status:Ok");
