@@ -17,35 +17,36 @@ file contains the execute command function to check whether the user input comma
 #include"command_engine.h"
 
 
+typedef struct
+{
+    uint8_t command_id;
+    void (*handler)(void);// handler is a pointer points to the function that returns the address the function that helps for mapping
 
-typedef struct{
-    char*input;
-    void(*handler)(void);// handler is a pointer points to the function that returns the address the function that helps for mapping
-
-}cmd_t;
-
-
-cmd_t commands[]={
-    {"ping",command_ping},
-    {"help",command_help},
-    {"status",command_status},
-    {"exit",command_exit}
+} cmd_t;
 
 
+
+cmd_t commands[] =
+{
+    {CMD_PING,   command_ping},
+    {CMD_HELP,   command_help},
+    {CMD_STATUS, command_status},
+    {CMD_EXIT,   command_exit}
 };
+void execute_command(uint8_t cmd_id)
+{
+    int number_commands = sizeof(commands) / sizeof(commands[0]);
 
-void execute_command(char *cmd){
-    int number_commands=sizeof(commands)/sizeof(commands[0]);
-for(int i =0 ; i<number_commands;i++){
-if(strcmp(cmd,commands[i].input)==0){ // strcmp is a function to comapare two string and if two string are equal it returns 0.
-    commands[i].handler();
-    return;
+    for (int i = 0; i < number_commands; i++)
+    {
+        if (cmd_id == commands[i].command_id)
+        {
+            commands[i].handler();
+            return;
+        }
+    }
+
+    printf("Unknown Command ID: 0x%02X\n", cmd_id);
 }
 
 
-}
-
- printf("Unknown Command!\n");
-
-
-}
