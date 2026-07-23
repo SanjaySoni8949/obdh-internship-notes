@@ -39,51 +39,13 @@ command_engine.c
 command_engine.h
 commands.c
 commands.h
+tokenizer.c
+tokenizer.h
 ```
 
-### main.c
 
-Reads user input from the console and passes commands to the command engine.
 
-### command_engine.c
 
-Searches the command table and executes the matching command.
-
-### commands.c
-
-Contains the implementation of each command.
-
----
-
-## Current Architecture
-
-```
-Keyboard
-    │
-stdin
-    │
-Command Engine
-    │
-Function Pointer Lookup
-    │
-Command Handler
-    │
-Console Output
-```
-
----
-
-## Current Status
-
-✅ Phase 1 Completed
-
-- Character input from console
-- Command recognition
-- Command execution
-- Modular architecture
-- Function pointer dispatch
-
----
 
 ## Future Work
 
