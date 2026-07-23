@@ -1,9 +1,22 @@
-/*  
-This file contain the mapping of the user input to the define function to execute
+/*
+ * command_engine.c
+ *
+ * Implements the shell command engine.
+ *
+ * Responsibilities:
+ *  - Maintains the command registry.
+ *  - Registers new commands using command_register().
+ *  - Searches the registered command table.
+ *  - Matches the user command with the corresponding callback.
+ *  - Executes the appropriate command function.
+ *
+ * The command engine is independent of individual commands.
+ * It only knows how to register and dispatch commands.
+ */
 
-file contains the execute command function to check whether the user input command is a known command or not
 
-*/
+
+
 
 
 
@@ -15,38 +28,54 @@ file contains the execute command function to check whether the user input comma
  
 #include <string.h>
 #include"command_engine.h"
+#include"tokenizer.h"
+#include"commands.h"
 
 
-typedef struct
+typedef struct{
+    const char*name;
+    void(*handler)(int argc,char*argv[]);// handler is a pointer points to the function that returns the address the function that helps for mapping
+
+}cmd_t;
+
+
+#define MAX_COMMANDS 20
+
+static cmd_t commands[MAX_COMMANDS];
+
+static int command_count = 0;
+
+void command_register(const char *name,
+                      void (*handler)(int argc, char *argv[]))
 {
-    uint8_t command_id;
-    void (*handler)(void);// handler is a pointer points to the function that returns the address the function that helps for mapping
-
-} cmd_t;
-
-
-
-cmd_t commands[] =
-{
-    {CMD_PING,   command_ping},
-    {CMD_HELP,   command_help},
-    {CMD_STATUS, command_status},
-    {CMD_EXIT,   command_exit}
-};
-void execute_command(uint8_t cmd_id)
-{
-    int number_commands = sizeof(commands) / sizeof(commands[0]);
-
-    for (int i = 0; i < number_commands; i++)
+    if (command_count >= MAX_COMMANDS)
     {
-        if (cmd_id == commands[i].command_id)
+        printf("Error: Command table is full.\n");
+        return;
+    }
+
+    commands[command_count].name = name;
+    commands[command_count].handler = handler;
+
+    command_count++;
+}
+
+void execute_command(int argc, char *argv[])
+{
+    if (argc == 0)
+    {
+        return;
+    }
+
+
+    for (int i = 0; i < command_count; i++)
+    {
+        if (strcmp(argv[0], commands[i].name) == 0)
         {
-            commands[i].handler();
+            commands[i].handler(argc, argv);
             return;
         }
     }
 
-    printf("Unknown Command ID: 0x%02X\n", cmd_id);
+    printf("Unknown command\n");
 }
-
-
