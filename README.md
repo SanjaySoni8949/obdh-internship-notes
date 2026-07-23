@@ -4,17 +4,9 @@
 
 
 
-# OBDH Command Shell Prototype
+Shell Prototype
 
-## Overview
-
-This repository contains my prototype implementation of a simple command shell developed as part of my OBDH internship learning process.
-
-The purpose of this project is to understand the architecture of a generic command engine before integrating it with the actual OBDH firmware.
-
-The current implementation runs on a PC using the standard input (`stdin`) to simulate a serial console.
-
----
+This project implements a modular command-line shell in C as part of the OBDH internship. The shell features character-by-character input processing, tokenization (argc/argv), dynamic command registration, and a command dispatch engine. The current implementation runs on a desktop using stdin for prototyping and is designed to be portable to embedded platforms (MSP430/UART) by replacing the input/output layer.
 
 ## Objectives
 
