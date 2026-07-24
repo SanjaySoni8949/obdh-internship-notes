@@ -189,6 +189,11 @@ This project currently has no license.
 A suitable open-source license (such as the MIT License) may be added in the future.
 
 ---
+## Acknowledgements
+
+This project was developed as part of my embedded systems learning journey during the SpaceLab UFSC internship.
+
+The design and implementation are my own work and serve as a reusable serial command shell for future embedded applications.
 
 # Author
 
