@@ -1,0 +1,7 @@
+#ifndef SHELL_CONFIG_H
+#define SHELL_CONFIG_H
+
+#define MAX_COMMAND_LENGTH 50
+#define MAX_ARGUMENTS 10
+
+#endif
