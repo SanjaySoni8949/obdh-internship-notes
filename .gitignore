@@ -1,0 +1,67 @@
+# =====================================
+# Generic Serial Command Shell
+# .gitignore
+# =====================================
+
+# Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.elf
+*.bin
+*.hex
+
+# Libraries
+*.a
+*.so
+*.dll
+*.dylib
+
+# Debug symbols
+*.dSYM/
+
+# Coverage files
+*.gcda
+*.gcno
+*.gcov
+
+# Build folders
+build/
+bin/
+Debug/
+Release/
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+# VS Code
+.vscode/
+
+# Code Composer Studio
+.metadata/
+
+# Eclipse
+.project
+.cproject
+.settings/
+
+# CLion
+.idea/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Backup files
+*~
+*.swp
+
+# Logs
+*.log
