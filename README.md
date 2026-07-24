@@ -1,46 +1,34 @@
-# Generic Command Shell
+# Generic Serial Command Shell
 
-A modular and portable command-line shell written in C for embedded systems.
+A modular and portable command-line shell written in C, designed as a desktop prototype for future deployment on embedded systems.
 
-This project was developed as a desktop prototype for a serial command shell that can later be integrated into embedded platforms such as the MSP430 running FreeRTOS. The shell is designed with modularity in mind, separating command parsing, command execution, and platform-specific input/output.
+The project demonstrates how to build a reusable command interpreter using a clean, modular architecture with dynamic command registration, argument parsing, and platform abstraction.
 
 ---
 
 # Features
 
-- Character-by-character command input
-- Backspace support
-- Ignore leading and repeated spaces
-- Command tokenizer (`argc` / `argv`)
-- Dynamic command registration
-- Generic command engine
-- Command descriptions and usage information
-- `help` and `help <command>`
-- `echo` command
-- `version` command
-- Command aliases (`quit`, `?`)
 - Modular architecture
+- Dynamic command registration
+- Function pointer based command dispatch
+- Tokenizer using `argc` / `argv`
 - Platform abstraction layer
+- Command metadata (description & usage)
+- Command aliases
+- Easy command extension
+- Desktop prototype ready for embedded porting
 
 ---
 
-# Project Structure
+# Project Goals
 
-```
-.
-├── main.c
-├── shell.c
-├── shell.h
-├── tokenizer.c
-├── tokenizer.h
-├── command_engine.c
-├── command_engine.h
-├── commands.c
-├── commands.h
-├── platform.h
-├── platform_stdio.c
-└── README.md
-```
+The primary goals of this project are:
+
+- Learn embedded software architecture
+- Build a reusable command engine
+- Keep modules independent
+- Simplify future porting to embedded hardware
+- Demonstrate clean C programming practices
 
 ---
 
@@ -64,121 +52,98 @@ This project was developed as a desktop prototype for a serial command shell tha
                     │
       ┌─────────────┴─────────────┐
       ▼                           ▼
-Registered Commands        Unknown Command
+ Registered Commands       Unknown Command
       │
       ▼
-Command Handler
+ Command Callback
 ```
 
 ---
 
-# Command Flow
-
-For example, when the user enters:
+# Project Structure
 
 ```
-echo Hello World
+Generic-Serial-Command-Shell/
+│
+├── README.md
+├── CONTRIBUTING.md
+│
+├── docs/
+│   ├── 01_Architecture.md
+│   ├── 02_Command_Engine.md
+│   ├── 03_Tokenizer.md
+│   ├── 04_Platform_Abstraction.md
+│   ├── 05_Commands.md
+│   ├── 06_Developer_Guide.md
+│   └── 07_Future_Work.md
+│
+├── command_engine.c
+├── command_engine.h
+├── commands.c
+├── commands.h
+├── tokenizer.c
+├── tokenizer.h
+├── shell.c
+├── shell.h
+├── platform_stdio.c
+├── platform.h
+└── main.c
 ```
-
-The tokenizer converts the input into:
-
-```
-argc = 3
-
-argv[0] = "echo"
-argv[1] = "Hello"
-argv[2] = "World"
-```
-
-The command engine searches for `"echo"` in the command table and executes the corresponding handler.
 
 ---
 
-# Available Commands
+# Documentation
 
-| Command | Description |
+Detailed documentation is available in the `docs/` directory.
+
+| Document | Description |
 |----------|-------------|
-| help | Display all commands |
-| help \<command\> | Show detailed help for a command |
-| ping | Test shell connectivity |
-| status | Display shell status |
-| version | Display shell version |
-| echo | Print text to the console |
-| exit | Exit the shell |
-| quit | Alias for exit |
-| ? | Alias for help |
+| Architecture | Overall system design |
+| Command Engine | Command registration and execution |
+| Tokenizer | Input parsing |
+| Platform Abstraction | Hardware-independent design |
+| Commands | User command reference |
+| Developer Guide | Adding new commands |
+| Future Work | Planned improvements |
 
 ---
 
-# Adding a New Command
-
-Adding a new command requires three simple steps.
-
-### 1. Declare the command
-
-```c
-void command_led(int argc, char *argv[]);
-```
-
-### 2. Implement the handler
-
-```c
-void command_led(int argc, char *argv[])
-{
-    printf("LED command executed\n");
-}
-```
-
-### 3. Register the command
-
-```c
-command_register(
-    "led",
-    "Control LED",
-    "led <on|off>",
-    command_led
-);
-```
-
-No changes to the command engine are required.
-
----
-
-# Platform Abstraction
-
-The shell is independent of the underlying hardware.
-
-Desktop version:
+# Example Session
 
 ```
-Keyboard
-    │
-shell_getchar()
-    │
-Shell
-    │
-Console
+> help
+
+Available Commands
+
+help
+ping
+echo
+status
+version
+exit
 ```
 
-Embedded version:
-
 ```
-UART
-   │
-shell_getchar()
-   │
-Shell
-   │
-Serial Terminal
+> echo Hello Embedded World
+
+Hello Embedded World
 ```
 
-Only the platform layer must be modified when porting to a different target.
+```
+> help ping
+
+Command     : ping
+Description : Check shell connectivity
+Usage       : ping
+```
 
 ---
 
 # Building
 
-Compile using GCC:
+Compile using any standard C compiler.
+
+Example using GCC:
 
 ```bash
 gcc *.c -o shell
@@ -192,54 +157,43 @@ Run:
 
 ---
 
-# Example Session
+# Future Roadmap
 
-```
-> help
+Planned improvements include:
 
-Available Commands:
+- UART backend
+- FreeRTOS integration
+- Command history
+- Auto-completion
+- Quoted string support
+- Escape sequences
+- Embedded platform support
+- Unit testing
 
-ping       - Check shell connectivity
-help       - Show available commands
-status     - Display shell status
-version    - Display shell version
-echo       - Print text
-exit       - Exit shell
-
-> ping
-PONG
-
-> echo Hello World
-Hello World
-
-> help echo
-
-Command     : echo
-Description : Print text to the console
-Usage       : echo <text>
-
-> version
-
-Shell Version : 1.0
-Platform      : Desktop Prototype
-```
+See `docs/07_Future_Work.md` for more details.
 
 ---
 
-# Future Improvements
+# Contributing
 
-- Command history
-- Auto-completion
-- UART backend
-- FreeRTOS integration
-- MSP430 support
-- Unit tests
-- Configuration file
+Contributions are welcome.
+
+Please read **CONTRIBUTING.md** before submitting changes.
+
+---
+
+# License
+
+This project currently has no license.
+
+A suitable open-source license (such as the MIT License) may be added in the future.
 
 ---
 
 # Author
 
-Sanjay Soni
+Developed by **Sanjay Soni**
 
-Developed as part of an embedded systems learning project and designed to evolve into a reusable serial command shell for embedded platforms.
+Electronics and Communication Engineering (ECE)
+
+This project was developed as part of an embedded systems learning journey and is intended to serve as a reusable command shell for future embedded applications.
