@@ -18,5 +18,5 @@ add_executable(shell
     core/src/tokenizer.c
     core/src/commands_engine.c
     core/src/commands.c
-    platform/Linux/linux_console.c
+    platform/Linux/src/linux_console.c
 )
