@@ -5,8 +5,8 @@ This file tells the rest of the project:
 */
 
 
-#ifndef PLATFORM_H
-#define PLATFORM_H
+#ifndef LINUX_CONSOLE_H
+#define LINUX_CONSOLE_H
 
 
 char shell_getchar(void);
