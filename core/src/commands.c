@@ -11,7 +11,7 @@ This file contains all the commands performed by the shell.
 #include <stdlib.h>   
 #include"command_engine.h"
 #include"commands.h"
-#include "platform.h"
+#include "linux_console.h"
 #include"shell_config.h"
 #include"tokenizer.h"
 
