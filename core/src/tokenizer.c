@@ -1,5 +1,6 @@
 #include<string.h>
 #include"tokenizer.h"
+#include "shell_config.h"
 
 
 void tokenizer( char * input , int*argc , char * argv[]){
