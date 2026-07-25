@@ -24,20 +24,17 @@
 
 
 
+
+
+
+
 #include<stdio.h>
  
 #include <string.h>
 #include"command_engine.h"
 #include"tokenizer.h"
 #include"commands.h"
-
-
-typedef struct{
-    const char*name;
-    void(*handler)(int argc,char*argv[]);// handler is a pointer points to the function that returns the address the function that helps for mapping
-
-}cmd_t;
-
+#include "platform.h"
 
 #define MAX_COMMANDS 20
 
@@ -45,19 +42,44 @@ static cmd_t commands[MAX_COMMANDS];
 
 static int command_count = 0;
 
-void command_register(const char *name,
+void command_register(const char *name,const char*description,const char * usage,
                       void (*handler)(int argc, char *argv[]))
 {
     if (command_count >= MAX_COMMANDS)
     {
-        printf("Error: Command table is full.\n");
+        shell_print("Error: Command table is full.\n");
         return;
     }
 
     commands[command_count].name = name;
+    commands[command_count].description=description;
+    commands[command_count].usage=usage;
     commands[command_count].handler = handler;
 
     command_count++;
+}
+void command_list(void)
+{
+    shell_print("Available Commands:\n\n");
+
+    for (int i = 0; i < command_count; i++)
+    {
+        shell_printf("%-10s - %s\n",
+               commands[i].name,
+               commands[i].description);
+    }
+}
+const cmd_t *command_find(const char *name)
+{
+    for (int i = 0; i < command_count; i++)
+    {
+        if (strcmp(name, commands[i].name) == 0)
+        {
+            return &commands[i];
+        }
+    }
+
+    return NULL;
 }
 
 void execute_command(int argc, char *argv[])
@@ -77,5 +99,12 @@ void execute_command(int argc, char *argv[])
         }
     }
 
-    printf("Unknown command\n");
+    shell_print("Unknown command:\n");
+    shell_print("Type 'help' to see available commands.\n");
+
+ 
 }
+
+   int command_get_count(void){
+        return command_count;
+    }
