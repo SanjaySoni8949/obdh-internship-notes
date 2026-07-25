@@ -34,7 +34,7 @@
 #include"command_engine.h"
 #include"tokenizer.h"
 #include"commands.h"
-#include "platform.h"
+#include "linux_console.h"
 
 #define MAX_COMMANDS 20
 
