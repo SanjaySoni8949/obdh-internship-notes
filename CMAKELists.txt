@@ -13,10 +13,10 @@ set(CMAKE_C_EXTENSIONS OFF)
 include_directories(include)
 
 add_executable(shell
-    src/main.c
-    src/shell.c
-    src/tokenizer.c
-    src/command_engine.c
-    src/commands.c
-    src/platform_stdio.c
+    core/src/main.c
+    core/src/shell.c
+    core/src/tokenizer.c
+    core/src/command_engine.c
+    core/src/commands.c
+    core/src/platform_stdio.c
 )
