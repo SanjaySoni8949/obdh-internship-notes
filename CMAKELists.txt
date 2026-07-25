@@ -21,4 +21,5 @@ add_executable(shell
 
 target_include_directories(shell PRIVATE
     core/include
+    platform/Linux/include
 )
