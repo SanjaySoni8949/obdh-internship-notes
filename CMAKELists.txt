@@ -16,7 +16,7 @@ add_executable(shell
     core/src/main.c
     core/src/shell.c
     core/src/tokenizer.c
-    core/src/command_engine.c
+    core/src/commands_engine.c
     core/src/commands.c
     core/src/platform_stdio.c
 )
