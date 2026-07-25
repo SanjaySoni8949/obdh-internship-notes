@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdarg.h>
-#include"platform.h"
+#include"linux_console.h"
 
 
 char shell_getchar(void){
