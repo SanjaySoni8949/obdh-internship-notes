@@ -111,3 +111,9 @@ void shell_process_char(char ch)
 {
     (void)ch;
 }
+
+
+void shell_init(void)
+{
+    /* Reserved for future initialization */
+}
