@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "shell.h"
-#include "linux_console.h"
+#include "shell_io.h"
 #include "tokenizer.h"
 #include "command_engine.h"
 #include"shell_config.h"
