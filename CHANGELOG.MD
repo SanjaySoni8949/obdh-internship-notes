@@ -1,48 +1,70 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project are documented in this file.
 
-This project follows a simple chronological changelog.
+The project follows Semantic Versioning (`MAJOR.MINOR.PATCH`).
 
 ---
 
-## [1.0.0] - Initial Release
+# [1.0.0] - Initial Release
 
-### Added
+## Added
 
+### Core Library
+- Reusable command shell library
 - Modular shell architecture
-- Character-by-character input processing
 - Command buffer
+- Character-by-character input processing
 - Tokenizer (`argc` / `argv`)
 - Dynamic command registration
-- Function pointer based command dispatch
-- Platform abstraction layer
-- `help` command
+- Function pointer-based command dispatch
+- Generic platform I/O abstraction (`shell_io`)
+
+### Built-in Commands
+- `help`
 - `help <command>`
-- `ping` command
-- `echo` command
-- `status` command
-- `version` command
-- `exit` command
+- `ping`
+- `echo`
+- `status`
+- `version`
+- `exit`
 - Command aliases (`quit`, `?`)
+
+### Features
+- Command metadata (description and usage)
 - Unknown command handling
-- Project documentation
-- Developer guide
-- Contributing guide
+- Multiple-space handling
+- Backspace handling
+- TAB normalization
+- Maximum command length protection
+
+### Build System
+- CMake support
+- Install rules for the command shell library
+- Linux desktop demonstration
+
+### Documentation
+- Project README
+- API documentation
+- Architecture overview
+- Results documentation
+- Demo GIF
 - MIT License
-- Git ignore configuration
+- `.gitignore`
 
 ---
 
-## Future Releases
+# Future Roadmap
 
-Future versions may include:
+Future releases may include:
 
+- Event-driven character processing
 - UART backend
 - FreeRTOS integration
+- Embedded platform support
 - Command history
 - Auto-completion
 - Quoted string support
-- Escape sequences
-- Embedded platform support
+- Escape sequence support
+- Configurable command registry
 - Unit tests
