@@ -88,13 +88,16 @@ void shell_run(void){
         }
 
         /* Execute the completed command */
-        int argc;
-char *argv[MAX_ARGUMENTS];
-
-tokenizer(command, &argc, argv);
-
-execute_command(argc, argv);
+     shell_process_input(command);
     }
 
 }
+void shell_process_input(char *input)
+{
+    int argc;
+    char *argv[MAX_ARGUMENTS];
 
+    tokenizer(input, &argc, argv);
+
+    execute_command(argc, argv);
+}
