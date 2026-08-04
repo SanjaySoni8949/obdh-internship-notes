@@ -33,8 +33,7 @@
 #include <string.h>
 #include"command_engine.h"
 #include"tokenizer.h"
-#include"commands.h"
-#include "linux_console.h"
+#include "shell_io.h"
 
 #define MAX_COMMANDS 20
 
