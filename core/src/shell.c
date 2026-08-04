@@ -105,3 +105,9 @@ void shell_process_input(char *input)
 
     execute_command(argc, argv);
 }
+void shell_process_char(char ch)
+{
+    (void)ch;
+}
+
+
