@@ -25,6 +25,11 @@ void shell_run(void){
         while (1)
         {
             ch = shell_getchar();
+            /* Convert TAB into a normal space */
+              if (ch == '\t')
+               {
+                 ch = ' ';
+                       }   
 
   
             shell_process_char(ch);
@@ -104,12 +109,5 @@ void shell_process_input(char *input)
 }
 void shell_process_char(char ch)
 {
-    /* Convert TAB into a normal space */
-    if (ch == '\t')
-    {
-        ch = ' ';
-    }
-
-    /* More processing will be moved here in the next steps */
+    (void)ch;
 }
-
