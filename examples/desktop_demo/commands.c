@@ -14,6 +14,7 @@ This file contains all the commands performed by the shell.
 #include "linux_console.h"
 #include"shell_config.h"
 #include"tokenizer.h"
+#include "version.h"
 
 void command_ping(int argc , char*argv[]){
     (void)argc;//these are unused parameter.
