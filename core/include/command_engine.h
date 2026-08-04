@@ -1,5 +1,33 @@
+/*
+ * command_engine.h
+ *
+ * Public interface for the generic command engine.
+ */
+
 #ifndef COMMAND_ENGINE_H
 #define COMMAND_ENGINE_H
+
+/**
+ * @brief Shell command descriptor.
+ *
+ * Stores the information required to register and execute a shell command.
+ */
+typedef struct
+{
+    /** Command name typed by the user. */
+    const char *name;
+
+    /** Short description displayed by the help command. */
+    const char *description;
+
+    /** Usage string displayed by help <command>. */
+    const char *usage;
+
+    /** Callback executed when the command is invoked. */
+    void (*handler)(int argc, char *argv[]);
+} cmd_t;
+
+
 
 /**
  * @brief Execute a command.
@@ -27,13 +55,6 @@ void command_register(const char *name,
                       const char *description,
                       const char *usage,
                       void (*handler)(int argc, char *argv[]));
-typedef struct
-{
-    const char *name;
-    const char *description;
-    const char *usage;
-    void (*handler)(int argc, char *argv[]);
-} cmd_t;
 
 
 /**
@@ -51,4 +72,10 @@ const cmd_t *command_find(const char *name);
  * @return Number of registered commands.
  */
 int command_get_count(void);
+
+/**
+ * @brief Print all registered commands.
+ */
+void command_list(void);
+
 #endif
