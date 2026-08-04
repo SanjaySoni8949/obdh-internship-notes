@@ -12,6 +12,13 @@
 static char command[MAX_COMMAND_LENGTH];
 static int index = 0;
 
+
+/*
+ * Legacy convenience wrapper.
+ *
+ * Applications are encouraged to call shell_process()
+ * from their own main loop instead of using shell_run().
+ */
 void shell_run(void)
 {
     while (1)
