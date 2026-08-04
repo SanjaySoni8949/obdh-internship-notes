@@ -31,9 +31,12 @@ int main(void)
 {
     shell_init();
 
-register_commands();
+    register_commands();
 
-shell_run();
-    
+    while (1)
+    {
+        shell_process();
+    }
+
     return 0;
 }
