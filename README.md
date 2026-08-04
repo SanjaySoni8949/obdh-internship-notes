@@ -4,6 +4,7 @@ A modular, reusable command-line shell library written in C.
 
 The project was developed as a desktop prototype for future deployment on embedded systems such as MSP430 and FreeRTOS-based platforms. It demonstrates clean software architecture through platform abstraction, modular design, and dynamic command registration.
 
+The project was refactored from a desktop prototype into a reusable C library by separating the core shell logic from platform-specific implementations through a generic I/O abstraction layer (shell_io).
 ---
 
 # Features
