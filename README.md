@@ -1,61 +1,50 @@
-# Generic Serial Command Shell
+# Generic Command Shell
 
-A modular and portable command-line shell written in C, designed as a desktop prototype for future deployment on embedded systems.
+A modular, reusable command-line shell library written in C.
 
-The project demonstrates how to build a reusable command interpreter using a clean, modular architecture with dynamic command registration, argument parsing, and platform abstraction.
+The project was developed as a desktop prototype for future deployment on embedded systems such as MSP430 and FreeRTOS-based platforms. It demonstrates clean software architecture through platform abstraction, modular design, and dynamic command registration.
 
 ---
 
 # Features
 
+- Reusable command shell library
 - Modular architecture
 - Dynamic command registration
 - Function pointer based command dispatch
 - Tokenizer using `argc` / `argv`
-- Platform abstraction layer
+- Platform abstraction layer (`shell_io`)
 - Command metadata (description & usage)
 - Command aliases
-- Easy command extension
-- Desktop prototype ready for embedded porting
-
----
-
-# Project Goals
-
-The primary goals of this project are:
-
-- Learn embedded software architecture
-- Build a reusable command engine
-- Keep modules independent
-- Simplify future porting to embedded hardware
-- Demonstrate clean C programming practices
+- Linux desktop demonstration
+- Easy porting to embedded platforms
 
 ---
 
 # Architecture
 
 ```
-                  User
-                    │
-                    ▼
-          Character Processor
-                    │
-                    ▼
-             Command Buffer
-                    │
-                    ▼
-               Tokenizer
-              (argc / argv)
-                    │
-                    ▼
-            Command Engine
-                    │
-      ┌─────────────┴─────────────┐
-      ▼                           ▼
- Registered Commands       Unknown Command
-      │
-      ▼
- Command Callback
+                    Application
+                          │
+                          ▼
+                 Command Shell Library
+                          │
+        ┌─────────────────┴─────────────────┐
+        ▼                                   ▼
+     Tokenizer                      Command Engine
+                          │
+                          ▼
+                  Registered Commands
+                          │
+                          ▼
+                    Command Callback
+                          │
+                          ▼
+                  Platform I/O Layer
+                          │
+            ┌─────────────┴─────────────┐
+            ▼                           ▼
+      Linux Console              FreeRTOS (Future)
 ```
 
 ---
@@ -63,73 +52,86 @@ The primary goals of this project are:
 # Project Structure
 
 ```
-Generic-Serial-Command-Shell/
+.
+├── core
+│   ├── include
+│   └── src
 │
-├── README.md
-├── CONTRIBUTING.md
+├── platform
+│   ├── Linux
+│   └── FreeRTOS
 │
-├── docs/
-│   ├── 01_Architecture.md
-│   ├── 02_Command_Engine.md
-│   ├── 03_Tokenizer.md
-│   ├── 04_Platform_Abstraction.md
-│   ├── 05_Commands.md
-│   ├── 06_Developer_Guide.md
-│   └── 07_Future_Work.md
+├── examples
+│   └── desktop_demo
 │
-├── command_engine.c
-├── command_engine.h
-├── commands.c
-├── commands.h
-├── tokenizer.c
-├── tokenizer.h
-├── shell.c
-├── shell.h
-├── platform_stdio.c
-├── platform.h
-└── main.c
+├── RESULTS
+│   ├── demo.gif
+│   ├── echo.png
+│   ├── multi_spaces.png
+│   └── README.md
+│
+├── CMakeLists.txt
+├── LICENSE
+└── README.md
 ```
 
 ---
 
-# Documentation
+# Building
 
-Detailed documentation is available in the `docs/` directory.
+## Requirements
 
-| Document | Description |
-|----------|-------------|
-| Architecture | Overall system design |
-| Command Engine | Command registration and execution |
-| Tokenizer | Input parsing |
-| Platform Abstraction | Hardware-independent design |
-| Commands | User command reference |
-| Developer Guide | Adding new commands |
-| Future Work | Planned improvements |
+- CMake 3.15+
+- GCC / MinGW
+
+## Build
+
+```bash
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+## Run
+
+```bash
+./desktop_demo
+```
+
+Windows
+
+```bash
+desktop_demo.exe
+```
 
 ---
 
 # Example Session
 
-```
+```text
+> ping
+PONG
+
 > help
 
 Available Commands
 
-help
 ping
-echo
+help
 status
+echo
 version
 exit
 ```
 
-```
-> echo Hello Embedded World
+```text
+> echo Hello World
 
-Hello Embedded World
+Hello World
 ```
 
-```
+```text
 > help ping
 
 Command     : ping
@@ -139,66 +141,67 @@ Usage       : ping
 
 ---
 
-# Building
+# Results
 
-Compile using any standard C compiler.
+The `RESULTS` directory contains:
 
-Example using GCC:
-
-```bash
-gcc *.c -o shell
-```
-
-Run:
-
-```bash
-./shell
-```
+- Demo GIF
+- Echo command demonstration
+- Multiple-space handling demonstration
 
 ---
 
-# Future Roadmap
+# Current Library Components
+
+## Core
+
+- Shell
+- Command Engine
+- Tokenizer
+
+## Platform Layer
+
+- Linux Console
+- FreeRTOS placeholder
+
+## Example
+
+- Desktop demonstration application
+
+---
+
+# Future Improvements
 
 Planned improvements include:
 
+- Event-driven character processing
 - UART backend
-- FreeRTOS integration
+- FreeRTOS task integration
 - Command history
 - Auto-completion
 - Quoted string support
-- Escape sequences
-- Embedded platform support
-- Unit testing
-
-See `docs/07_Future_Work.md` for more details.
-
----
-
-# Contributing
-
-Contributions are welcome.
-
-Please read **CONTRIBUTING.md** before submitting changes.
+- Embedded hardware support
 
 ---
 
 # License
 
-This project currently has no license.
+This project is licensed under the MIT License.
 
-A suitable open-source license (such as the MIT License) may be added in the future.
+See the LICENSE file for details.
 
 ---
-## Acknowledgements
 
-This project was developed as part of my embedded systems learning journey during the SpaceLab UFSC internship.
+# Acknowledgements
 
-The design and implementation are my own work and serve as a reusable serial command shell for future embedded applications.
+This project was developed during the SpaceLab UFSC internship as part of the OBDH command shell prototype.
+
+---
 
 # Author
 
-Developed by **Sanjay Soni**
+**Sanjay Soni**
 
 Electronics and Communication Engineering (ECE)
 
-This project was developed as part of an embedded systems learning journey and is intended to serve as a reusable command shell for future embedded applications.
+Designed as a reusable command shell library for future embedded applications.
