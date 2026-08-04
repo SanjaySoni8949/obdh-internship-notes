@@ -26,11 +26,8 @@ void shell_run(void){
         {
             ch = shell_getchar();
 
-            /* Convert TAB into a normal space */
-            if (ch == '\t')
-            {
-                ch = ' ';
-            }
+  
+            shell_process_char(ch);
 
             /* Handle Backspace */
             if (ch == '\b' || ch == 127)// different terminal has different ascii value and
@@ -107,7 +104,12 @@ void shell_process_input(char *input)
 }
 void shell_process_char(char ch)
 {
-    (void)ch;
-}
+    /* Convert TAB into a normal space */
+    if (ch == '\t')
+    {
+        ch = ' ';
+    }
 
+    /* More processing will be moved here in the next steps */
+}
 
