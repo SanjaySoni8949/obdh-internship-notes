@@ -11,13 +11,13 @@
 #define SHELL_H
 
 /**
- * @brief Start the interactive shell.
+ * @brief Legacy convenience wrapper.
  *
- * This function starts the shell loop and continuously reads
- * input from the configured platform until the application exits.
+ * Continuously calls shell_process() in an infinite loop.
+ * New applications should prefer calling shell_process()
+ * from their own main loop.
  */
 void shell_run(void);
-
 
 /* Process one iteration of the shell */
 void shell_process(void);
