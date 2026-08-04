@@ -1,26 +1,34 @@
 /*
  * tokenizer.h
  *
- * Public interface for the tokenizer module.
+ * Tokenizer interface for the generic command shell.
  *
- * Declares the tokenizer function used by other modules to
- * convert an input command string into argc/argv format.
+ * This module splits a command line into individual arguments
+ * that can be passed to the command engine.
  */
-
-
-
 
 #ifndef TOKENIZER_H
 #define TOKENIZER_H
 
-
-# define max_arguments 10
-
-/*
-   input - Command string to tokenize.
-   argc  - Pointer to the number of tokens found.
-   argv  - Array of pointers to each token.
+/**
+ * @brief Tokenize a command line.
+ *
+ * Splits the input string into whitespace-separated arguments.
+ * The input string is modified in-place by inserting null
+ * terminators ('\0') between tokens.
+ *
+ * Example:
+ *   Input : "echo hello world"
+ *
+ *   argc = 3
+ *   argv[0] = "echo"
+ *   argv[1] = "hello"
+ *   argv[2] = "world"
+ *
+ * @param input Command line to tokenize.
+ * @param argc Pointer to the argument count.
+ * @param argv Array that receives pointers to each argument.
  */
-void tokenizer( char * input , int *argc , char*argv[]);
+void tokenizer(char *input, int *argc, char *argv[]);
 
-#endif
+#endif /* TOKENIZER_H */
