@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for your interest in contributing to the Generic Serial Command Shell.
+Thank you for your interest in contributing to the Generic  Command Shell.
 
 This document provides guidelines for contributing to the project.
 
