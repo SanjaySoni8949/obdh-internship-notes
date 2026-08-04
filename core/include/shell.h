@@ -18,6 +18,11 @@
  */
 void shell_run(void);
 
+
+/* Process one iteration of the shell */
+void shell_process(void);
+
+
 /**
  * @brief Process a single input character.
  *
