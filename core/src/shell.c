@@ -8,11 +8,13 @@
 #include"shell_config.h"
 
 #define SHELL_PROMPT "> "
+static char command[MAX_COMMAND_LENGTH];
+static int index = 0;
 
 void shell_run(void){
-    char command[MAX_COMMAND_LENGTH];
+
     char ch;
-    int index;
+    
 
     while (1)
     {
