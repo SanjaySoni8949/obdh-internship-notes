@@ -13,7 +13,7 @@ set(CMAKE_C_EXTENSIONS OFF)
 add_library(command_shell
     core/src/shell.c
     core/src/tokenizer.c
-    core/src/commands_engine.c
+    core/src/command_engine.c
 )
 add_executable(desktop_demo
     examples/desktop_demo/main.c
