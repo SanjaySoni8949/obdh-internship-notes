@@ -51,7 +51,7 @@ void command_status(int argc, char *argv[])
     (void)argv;
 
 shell_print("========== Shell Status ==========\n");
-shell_print("Platform            : Desktop Prototype\n");
+shell_print("Platform            : Linux Desktop Demo\n");
 shell_printf("Shell Version       : %s\n", COMMAND_SHELL_VERSION_STRING);
 shell_printf("Registered Commands : %d\n", command_get_count());
 shell_printf("Max Command Length  : %d\n", MAX_COMMAND_LENGTH);
