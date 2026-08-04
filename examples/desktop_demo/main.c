@@ -29,10 +29,11 @@
 
 int main(void)
 {
-    
-     register_commands();
+    shell_init();
 
-     shell_run();
+register_commands();
+
+shell_run();
     
     return 0;
 }
