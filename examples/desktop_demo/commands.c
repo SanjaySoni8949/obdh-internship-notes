@@ -50,13 +50,13 @@ void command_status(int argc, char *argv[])
     (void)argc;
     (void)argv;
 
-    printf("========== Shell Status ==========\n");
-    printf("Platform            : Desktop Prototype\n");
-    printf("Shell Version       : 1.0\n");
-    printf("Registered Commands : %d\n", command_get_count());
-    printf("Max Command Length  : %d\n", MAX_COMMAND_LENGTH);
-    printf("Max Arguments       : %d\n", MAX_ARGUMENTS);
-    printf("==================================\n");
+shell_print("========== Shell Status ==========\n");
+shell_print("Platform            : Desktop Prototype\n");
+shell_printf("Shell Version       : %s\n", COMMAND_SHELL_VERSION_STRING);
+shell_printf("Registered Commands : %d\n", command_get_count());
+shell_printf("Max Command Length  : %d\n", MAX_COMMAND_LENGTH);
+shell_printf("Max Arguments       : %d\n", MAX_ARGUMENTS);
+shell_print("==================================\n");
 }
 void command_exit(int argc , char*argv[]){
     (void)argc;
@@ -89,18 +89,23 @@ void command_echo(int argc, char *argv[])
 void command_version(int argc,char*argv[]){
     (void)argc;
     (void)argv;
-     printf("Shell Version : 1.0\n");
-    printf("Platform      : Desktop Prototype\n");
-    printf("Build         : Generic Command Shell\n");
+shell_printf("Shell Version : %s\n", COMMAND_SHELL_VERSION_STRING);
+shell_print("Platform      : Linux Desktop\n");
+shell_print("Build         : Generic Command Shell\n");
 }
+/*
+ * Registers all built-in shell commands.
+ *
+ * This function is called once during shell initialization.
+ */
 void register_commands(void)
 {
-    command_register("ping", "Check shell connectivity"," ping", command_ping);
+    command_register("ping", "Check shell connectivity","ping", command_ping);
     command_register("help", "Show available commands", "help [command]",command_help);
     command_register("status","Display system status","status", command_status);
     command_register("exit","Exit the shell","exit", command_exit);
-    command_register("echo","Print text to the console","echo<text>",command_echo);
+    command_register("echo","Print text to the console","echo <text>",command_echo);
     command_register("quit","Alias for exit","quit",command_exit);
-    command_register("?","Aliase for help","?",command_help);
-    command_register("version","display shell version","version",command_version);
+    command_register("?","Alias for help","?",command_help);
+    command_register("version","Display shell version","version",command_version);
 }
