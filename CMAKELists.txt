@@ -36,3 +36,12 @@ target_include_directories(desktop_demo
         core/include
 
 )
+# Install library
+install(TARGETS command_shell
+    ARCHIVE DESTINATION lib
+)
+
+# Install public headers
+install(DIRECTORY core/include/
+    DESTINATION include
+)
