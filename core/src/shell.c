@@ -16,7 +16,7 @@ void shell_run(void){
 
     while (1)
     {
-        printf(SHELL_PROMPT);
+  shell_print(SHELL_PROMPT);
 
         index = 0;
 
@@ -38,7 +38,9 @@ void shell_run(void){
                 if (index > 0)
                 {
                     index--;
-                    printf("\b \b");
+                 shell_putchar('\b');
+                 shell_putchar(' ');
+                 shell_putchar('\b');
                 }
 
                 continue;
@@ -66,7 +68,7 @@ void shell_run(void){
             /* Check buffer overflow */
             if (index >= MAX_COMMAND_LENGTH - 1)
             {
-                printf("\nError: Command too long.\n");
+          shell_print("\nError: Command too long.\n");
 
                 /* Discard remaining characters */
                 while ((ch = shell_getchar()) != '\n' && ch != EOF);// ch=getchar()=!'\n' will one input at  a time 
