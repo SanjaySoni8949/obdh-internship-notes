@@ -10,19 +10,29 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
-add_executable(shell
+add_library(command_shell
     core/src/shell.c
     core/src/tokenizer.c
     core/src/commands_engine.c
-    
 )
 add_executable(desktop_demo
     examples/desktop_demo/main.c
     examples/desktop_demo/commands.c
-    platform/linux/src/linux_console.c
+    platform/Linux/src/linux_console.c
+)
+target_link_libraries(desktop_demo
+    PRIVATE
+        command_shell
 )
 
-target_include_directories(shell PRIVATE
+target_include_directories(command_shell PUBLIC
     core/include
-    platform/Linux/include
+    
+)
+target_include_directories(desktop_demo
+    PRIVATE
+        examples/desktop_demo
+        platform/Linux/include
+        core/include
+
 )
