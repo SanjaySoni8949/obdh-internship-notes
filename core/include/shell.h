@@ -38,4 +38,10 @@ void shell_process_char(char ch);
  */
 void shell_process_input(char *input);
 
+/**
+ * @brief Initialize the shell.
+ */
+void shell_init(void);
+
+
 #endif /* SHELL_H */
