@@ -117,3 +117,7 @@ void shell_init(void)
 {
     /* Reserved for future initialization */
 }
+
+void shell_process(void)
+{
+}
